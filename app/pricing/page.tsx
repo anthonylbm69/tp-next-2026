@@ -1,4 +1,3 @@
-// Icône CheckIcon inline avec types TypeScript
 const CheckIcon = ({ className }: { className?: string }) => (
   <svg 
     className={className} 
@@ -42,7 +41,6 @@ const tiers = [
   },
 ];
 
-// Fonction classNames avec types TypeScript
 function classNames(...classes: (string | boolean | null | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
 }
