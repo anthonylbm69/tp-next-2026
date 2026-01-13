@@ -1,7 +1,5 @@
 "use client";
 
-import { Check } from "lucide-react";
-
 export default function CheckoutButton() {
     const handleCheckout = async () => {
         try {
