@@ -1,15 +1,10 @@
 import { stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 
-// Définis la base URL ici, mais ne crée pas de session ici !
 const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
 export async function POST(req: Request) {
     try {
-        // 1. Récupère éventuellement des données du body (ex: prix, id produit)
-        // const body = await req.json();
-
-        // 2. Crée la session UNIQUEMENT ici
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: [
@@ -25,7 +20,12 @@ export async function POST(req: Request) {
                 },
             ],
             mode: "payment",
-            success_url: `${baseUrl}/success`,
+            // --- AJOUT : Active la génération de facture pour un achat unique ---
+            invoice_creation: {
+                enabled: true,
+            },
+            // --- MODIFICATION : Ajoute l'ID de session à l'URL de succès ---
+            success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${baseUrl}`,
         });
 
