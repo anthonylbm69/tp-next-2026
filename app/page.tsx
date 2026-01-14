@@ -85,9 +85,11 @@ export default function Home() {
                 </li>
               </ul>
 
-              <button className="mt-10 w-full rounded-2xl bg-black py-4 font-bold text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all active:scale-95 shadow-lg">
-                Commencer l'essai gratuit
-              </button>
+              <Link href="/payments">
+                <button className="mt-10 w-full rounded-2xl bg-black py-4 font-bold text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all active:scale-95 shadow-lg">
+                  Commencer l'essai gratuit
+                </button>
+              </Link>
 
               <p className="text-center text-xs text-zinc-400 mt-4">
                 Sans engagement. Annulable à tout moment.
