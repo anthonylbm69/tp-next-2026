@@ -21,7 +21,6 @@ const tiers = [
   {
     name: 'Starter',
     id: 'tier-starter',
-    // On passe le prix en paramètre d'URL
     priceValue: 20,
     priceMonthly: '20€',
     description: "Parfait pour les petites équipes qui débutent.",
