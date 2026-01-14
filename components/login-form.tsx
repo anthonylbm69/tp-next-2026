@@ -1,3 +1,7 @@
+"use client" // Important pour utiliser useState et onSubmit
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,6 +23,42 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    const formData = new FormData(event.currentTarget)
+    const email = formData.get("email")
+    const password = formData.get("password")
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || result.error) {
+        setError(result.message || "Identifiants incorrects")
+      } else {
+        // Redirection vers le tableau de bord ou l'accueil
+        router.push("/dashboard") 
+        router.refresh()
+      }
+    } catch (err) {
+      setError("Impossible de contacter le serveur.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -29,12 +69,20 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleLogin}>
             <FieldGroup>
+              {/* Zone d'affichage des erreurs */}
+              {error && (
+                <div className="p-3 text-sm font-medium text-red-500 bg-red-50 rounded-md">
+                  {error}
+                </div>
+              )}
+
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   id="email"
+                  name="email" // Ajouté pour FormData
                   type="email"
                   placeholder="m@example.com"
                   required
@@ -50,15 +98,22 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input 
+                  id="password" 
+                  name="password"
+                  type="password" 
+                  required 
+                />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
-                <Button variant="outline" type="button">
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? "Chargement..." : "Login"}
+                </Button>
+                <Button variant="outline" type="button" className="w-full">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="/signup">Sign up</a>
+                  Don&apos;t have an account? <a href="/signup" className="underline">Sign up</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
