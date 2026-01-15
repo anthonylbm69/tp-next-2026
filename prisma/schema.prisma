@@ -14,6 +14,8 @@ model User {
   lastName  String
   password  String
   orders    Order[] 
+  paymentMethods PaymentMethod[]
+
 }
 
 model Product {
@@ -36,4 +38,17 @@ model Order {
   status            String   @default("pending")
   totalAmount       Float
   createdAt         DateTime @default(now())
+}
+
+model PaymentMethod {
+  id                    String   @id @default(uuid())
+  userId                Int
+  user                  User     @relation(fields: [userId], references: [id])
+  stripePaymentMethodId String   @unique
+  brand                 String   
+  last4                 String   
+  expiryMonth           Int
+  expiryYear            Int
+  isDefault             Boolean  @default(false)
+  createdAt             DateTime @default(now())
 }

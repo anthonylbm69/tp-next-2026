@@ -86,7 +86,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/account">
+                <Link href="/dashboard/account">
                   <IconUserCircle />
                   Account
                 </Link>

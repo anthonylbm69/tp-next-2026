@@ -18,7 +18,10 @@ import {
   IconReport,
   IconSearch,
   IconSettings,
+  IconUser,
   IconUsers,
+  IconFileInvoice,
+  IconCreditCard,
 } from "@tabler/icons-react"
 
 import { NavDocuments } from "@/components/nav-documents"
@@ -47,6 +50,21 @@ const navMain = [
   { title: "Analytics", url: "#", icon: IconChartBar },
   { title: "Projects", url: "#", icon: IconFolder },
   { title: "Team", url: "#", icon: IconUsers },
+  {
+    title: "Account",
+    url: "/dashboard/account",
+    icon: IconUser,  // Importer depuis @tabler/icons-react
+  },
+  {
+    title: "Orders",
+    url: "/dashboard/account/orders",
+    icon: IconFileInvoice,
+  },
+  {
+    title: "Payments",
+    url: "/dashboard/account/payments",
+    icon: IconCreditCard,
+  },
 ]
 
 const documents = [

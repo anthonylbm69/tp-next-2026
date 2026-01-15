@@ -34,6 +34,7 @@ export async function POST(request: Request) {
         // ArgonVerify(hash_en_base, mot_de_passe_saisi)
     const isPasswordValid = await ArgonVerify(user.password, password);
     console.log("🔑 Password valid:", isPasswordValid);
+    
 
     if (!isPasswordValid) {
       return NextResponse.json(
