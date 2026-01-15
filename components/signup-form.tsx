@@ -38,7 +38,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     }
 
     try {
-      const response = await fetch("/api/auth/register", { 
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({
           firstName: data.firstName,
@@ -55,7 +55,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       if (!response.ok || result.error) {
         setError(result.message || "Une erreur est survenue")
       } else {
-        router.push("/login?success=account-created")
+        router.push("/dashboard")
+        router.refresh()
       }
     } catch (e) {
       setError("Erreur de connexion au serveur.")
@@ -76,7 +77,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             {error && (
               <div className="text-red-500 text-sm font-medium mb-4">{error}</div>
             )}
-            
+
             <Field>
               <FieldLabel htmlFor="lastName">Last Name</FieldLabel>
               <Input id="lastName" name="lastName" type="text" placeholder="Doe" required />

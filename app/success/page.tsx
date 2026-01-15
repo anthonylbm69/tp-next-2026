@@ -31,7 +31,6 @@ export default function SuccessPage() {
         <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 p-4 dark:bg-black">
             <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-white/10">
                 <div className="flex flex-col items-center text-center">
-                    {/* Animated Checkmark */}
                     <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                         <svg
                             className="h-10 w-10 text-green-600 dark:text-green-400"

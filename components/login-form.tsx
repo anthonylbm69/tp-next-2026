@@ -48,7 +48,6 @@ export function LoginForm({
       if (!response.ok || result.error) {
         setError(result.message || "Identifiants incorrects")
       } else {
-        // Redirection vers le tableau de bord ou l'accueil
         router.push("/dashboard") 
         router.refresh()
       }
@@ -82,7 +81,7 @@ export function LoginForm({
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   id="email"
-                  name="email" // Ajouté pour FormData
+                  name="email" 
                   type="email"
                   placeholder="m@example.com"
                   required
