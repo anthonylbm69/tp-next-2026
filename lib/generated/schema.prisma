@@ -1,22 +1,20 @@
 generator client {
   provider = "prisma-client-js"
-  output = "../lib/generated"
+  output   = "../lib/generated"
 }
-
 
 datasource db {
   provider = "postgresql"
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  firstName String
-  lastName  String
-  password  String
-  orders    Order[] 
+  id             Int             @id @default(autoincrement())
+  email          String          @unique
+  firstName      String
+  lastName       String
+  password       String
+  orders         Order[]
   paymentMethods PaymentMethod[]
-
 }
 
 model Product {
@@ -29,16 +27,16 @@ model Product {
 }
 
 model Order {
-  id                Int      @id @default(autoincrement())
-  userId            Int
-  user              User     @relation(fields: [userId], references: [id])
-  stripeSessionId   String   @unique
-  stripeInvoiceId   String?  
-  invoicePdfUrl     String?  
-  invoiceNumber     String?  
-  status            String   @default("pending")
-  totalAmount       Float
-  createdAt         DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  stripeSessionId String   @unique
+  stripeInvoiceId String?
+  invoicePdfUrl   String?
+  invoiceNumber   String?
+  status          String   @default("pending")
+  totalAmount     Float
+  createdAt       DateTime @default(now())
 }
 
 model PaymentMethod {
@@ -46,8 +44,8 @@ model PaymentMethod {
   userId                Int
   user                  User     @relation(fields: [userId], references: [id])
   stripePaymentMethodId String   @unique
-  brand                 String   
-  last4                 String   
+  brand                 String
+  last4                 String
   expiryMonth           Int
   expiryYear            Int
   isDefault             Boolean  @default(false)
