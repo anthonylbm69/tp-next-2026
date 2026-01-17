@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import Link from "next/link"; // Importation de Link pour la navigation
+import Link from "next/link"; 
 import { 
   IconReceipt2, 
   IconDownload, 
