@@ -16,10 +16,8 @@ export function NavMain() {
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
-        {/* --- NAVIGATION PRINCIPALE --- */}
         <SidebarMenu>
           
-          {/* Item : Abonnement */}
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Abonnement">
               <Link href="/subscriptions">
@@ -29,7 +27,6 @@ export function NavMain() {
             </SidebarMenuButton>
           </SidebarMenuItem>
 
-          {/* Item : Factures */}
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Factures">
               <Link href="/invoices">

@@ -89,7 +89,6 @@ export default function CheckoutButton() {
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 to-zinc-100 p-4 dark:from-zinc-950 dark:to-zinc-900">
             <div className="w-full max-w-lg overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
                 <div className="p-8 md:p-10">
-                    {/* Header du récapitulatif */}
                     <div className="flex items-center justify-between mb-8">
                         <Link href="/payments" className="flex items-center text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors">
                             <IconArrowLeft className="mr-2 h-4 w-4" />
@@ -107,7 +106,6 @@ export default function CheckoutButton() {
                         Vous avez choisi le plan <span className="font-bold text-zinc-900 dark:text-white">{currentPlan.name}</span>.
                     </p>
 
-                    {/* Zone de prix */}
                     <div className="rounded-3xl bg-zinc-50 dark:bg-zinc-800/50 p-6 mb-8 flex items-center justify-between border border-zinc-100 dark:border-zinc-800">
                         <div>
                             <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Total à payer</p>
@@ -118,7 +116,6 @@ export default function CheckoutButton() {
                         </div>
                     </div>
 
-                    {/* Liste des fonctionnalités incluses */}
                     <div className="mb-10">
                         <p className="text-sm font-bold text-zinc-900 dark:text-white mb-4">Inclus dans votre forfait :</p>
                         <ul className="grid grid-cols-1 gap-3">
@@ -131,7 +128,6 @@ export default function CheckoutButton() {
                         </ul>
                     </div>
 
-                    {/* Bouton d'action */}
                     <button
                         onClick={() => handleCheckout(price)}
                         className={`w-full group relative overflow-hidden rounded-2xl bg-gradient-to-r ${currentPlan.color} p-5 font-bold text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95`}
@@ -141,7 +137,6 @@ export default function CheckoutButton() {
                         </span>
                     </button>
 
-                    {/* Footer sécurisé */}
                     <div className="mt-8 flex items-center justify-center gap-4 text-zinc-400">
                         <div className="flex items-center gap-1.5">
                             <IconLock className="h-3.5 w-3.5" />
