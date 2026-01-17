@@ -70,7 +70,6 @@ export function LoginForm({
         <CardContent>
           <form onSubmit={handleLogin}>
             <FieldGroup>
-              {/* Zone d'affichage des erreurs */}
               {error && (
                 <div className="p-3 text-sm font-medium text-red-500 bg-red-50 rounded-md">
                   {error}
@@ -107,9 +106,6 @@ export function LoginForm({
               <Field>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? "Chargement..." : "Login"}
-                </Button>
-                <Button variant="outline" type="button" className="w-full">
-                  Login with Google
                 </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="/signup" className="underline">Sign up</a>

@@ -106,7 +106,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/login">
+              <Link href="/api/auth/logout">
                 <IconLogout />
                 Log out
               </Link>

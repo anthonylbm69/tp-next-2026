@@ -3,7 +3,13 @@ import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { IconCheck, IconCrown, IconAlertCircle, IconArrowUpRight } from "@tabler/icons-react";
+import { 
+  IconCheck, 
+  IconCrown, 
+  IconAlertCircle, 
+  IconArrowUpRight, 
+  IconArrowLeft 
+} from "@tabler/icons-react";
 
 export default async function SubscriptionPage() {
   const cookieStore = await cookies();
@@ -31,13 +37,24 @@ export default async function SubscriptionPage() {
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-6">
+      <div className="mb-6">
+        <Link 
+          href="/dashboard" 
+          className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors group"
+        >
+          <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
+            <IconArrowLeft className="size-4" />
+          </div>
+          Retour au Dashboard
+        </Link>
+      </div>
+
       <div className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Mon Abonnement</h1>
         <p className="text-zinc-500 dark:text-zinc-400">Gérez votre forfait et vos préférences de facturation.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 shadow-sm">
             <div className="flex items-center justify-between mb-6">
@@ -105,7 +122,6 @@ export default async function SubscriptionPage() {
             </p>
           )}
         </div>
-
       </div>
     </div>
   );

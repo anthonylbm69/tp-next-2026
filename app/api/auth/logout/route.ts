@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
-import { clearAuthCookie } from "@/lib/auth";
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 
-export async function POST() {
+export async function GET() {
   try {
-    await clearAuthCookie();
-    return NextResponse.json({ success: true });
+    const cookieStore = await cookies();
+    
+    cookieStore.delete("auth-token");
+    revalidatePath("/");
+    return NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_URL || "http://localhost:3000"));
   } catch (error) {
     console.error("Logout error:", error);
     return NextResponse.json(
