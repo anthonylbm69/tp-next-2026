@@ -25,7 +25,7 @@ model Product {
   description String?
   price       Float
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  order       Order[]
 }
 
 model Order {
@@ -39,6 +39,9 @@ model Order {
   status            String   @default("pending")
   totalAmount       Float
   createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  productId Int     
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model PaymentMethod {

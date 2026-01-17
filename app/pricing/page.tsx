@@ -45,7 +45,6 @@ function classNames(...classes: (string | boolean | null | undefined)[]): string
   return classes.filter(Boolean).join(' ');
 }
 
-// Export default pour Next.js
 export default function PricingPage() {
   return (
     <div className="relative isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">

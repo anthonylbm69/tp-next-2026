@@ -7,7 +7,6 @@ export async function GET() {
   try {
     console.log("📍 /api/me called");
     
-    // Récupérer l'utilisateur connecté depuis le JWT
     const currentUser = await getCurrentUser();
     console.log("🔐 Current user from JWT:", currentUser);
 
@@ -19,7 +18,6 @@ export async function GET() {
       );
     }
 
-    // Récupérer les données complètes depuis Prisma
     const user = await prisma.user.findUnique({
       where: { id: currentUser.userId },
       select: {
@@ -40,7 +38,6 @@ export async function GET() {
       );
     }
 
-    // Retourner les données formatées pour NavUser
     const response = {
       name: `${user.firstName} ${user.lastName}`,
       email: user.email,

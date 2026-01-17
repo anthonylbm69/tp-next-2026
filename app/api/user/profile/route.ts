@@ -2,12 +2,10 @@ import { prisma } from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/auth"
 import type { NextRequest } from "next/server"
 
-// GET - Récupérer le profil utilisateur
 export async function GET(req: NextRequest) {
   try {
     console.log("🔍 Fetching profile...")
     
-    // Récupérer l'utilisateur connecté depuis le JWT
     const currentUser = await getCurrentUser()
     console.log("👤 Current user:", currentUser)
 
@@ -48,12 +46,10 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// PATCH - Modifier le profil utilisateur
 export async function PATCH(req: NextRequest) {
   try {
     console.log("🔍 Updating profile...")
     
-    // Récupérer l'utilisateur connecté depuis le JWT
     const currentUser = await getCurrentUser()
     console.log("👤 Current user:", currentUser)
 
@@ -67,7 +63,6 @@ export async function PATCH(req: NextRequest) {
 
     const { firstName, lastName, email } = await req.json()
 
-    // Validation simple
     if (!firstName || !lastName || !email) {
       return Response.json(
         { error: true, message: "All fields are required" },
@@ -75,7 +70,6 @@ export async function PATCH(req: NextRequest) {
       )
     }
 
-    // Vérifier si l'email est déjà utilisé par un autre utilisateur
     const existingUser = await prisma.user.findFirst({
       where: {
         email: email,
@@ -90,7 +84,6 @@ export async function PATCH(req: NextRequest) {
       )
     }
 
-    // Mettre à jour l'utilisateur
     const updatedUser = await prisma.user.update({
       where: { id: currentUser.userId },
       data: { firstName, lastName, email },

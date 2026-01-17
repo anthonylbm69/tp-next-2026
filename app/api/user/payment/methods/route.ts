@@ -45,9 +45,6 @@ export async function POST(req: NextRequest) {
     const { stripePaymentMethodId, brand, last4, expiryMonth, expiryYear } =
       await req.json()
 
-    // TODO: Créer la méthode de paiement dans la base
-    // const paymentMethod = await prisma.paymentMethod.create({ ... })
-
     return Response.json({
       error: false,
       message: "Payment method added successfully",

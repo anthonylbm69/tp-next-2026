@@ -53,7 +53,7 @@ const navMain = [
   {
     title: "Account",
     url: "/dashboard/account",
-    icon: IconUser,  // Importer depuis @tabler/icons-react
+    icon: IconUser,  
   },
   {
     title: "Orders",
@@ -65,18 +65,6 @@ const navMain = [
     url: "/dashboard/account/payments",
     icon: IconCreditCard,
   },
-]
-
-const documents = [
-  { name: "Data Library", url: "#", icon: IconDatabase },
-  { name: "Reports", url: "#", icon: IconReport },
-  { name: "Word Assistant", url: "#", icon: IconFileWord },
-]
-
-const navSecondary = [
-  { title: "Settings", url: "#", icon: IconSettings },
-  { title: "Get Help", url: "#", icon: IconHelp },
-  { title: "Search", url: "#", icon: IconSearch },
 ]
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
@@ -120,8 +108,6 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
 
       <SidebarContent>
         <NavMain items={navMain} />
-        <NavDocuments items={documents} />
-        <NavSecondary items={navSecondary} className="mt-auto" />
       </SidebarContent>
 
       <SidebarFooter>

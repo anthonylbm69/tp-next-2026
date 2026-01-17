@@ -10,12 +10,10 @@ export interface JWTPayload {
   email: string;
 }
 
-// Créer un token JWT
 export function createToken(payload: JWTPayload): string {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
 }
 
-// Vérifier un token JWT
 export function verifyToken(token: string): JWTPayload | null {
   try {
     return jwt.verify(token, JWT_SECRET) as JWTPayload;
@@ -24,12 +22,10 @@ export function verifyToken(token: string): JWTPayload | null {
   }
 }
 
-// Hasher un mot de passe
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 10);
 }
 
-// Vérifier un mot de passe
 export async function comparePassword(
   password: string,
   hashedPassword: string
@@ -37,7 +33,6 @@ export async function comparePassword(
   return bcrypt.compare(password, hashedPassword);
 }
 
-// Récupérer l'utilisateur connecté depuis le cookie
 export async function getCurrentUser(): Promise<JWTPayload | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
@@ -47,7 +42,6 @@ export async function getCurrentUser(): Promise<JWTPayload | null> {
   return verifyToken(token);
 }
 
-// Définir le cookie d'authentification
 export async function setAuthCookie(token: string) {
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {
@@ -59,7 +53,6 @@ export async function setAuthCookie(token: string) {
   });
 }
 
-// Supprimer le cookie d'authentification
 export async function clearAuthCookie() {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAME);
