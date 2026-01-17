@@ -66,7 +66,7 @@ export async function OPTIONS() {
     },
   });
 }
-
+/*
 try {
     // 1. D'abord, vérifie quels utilisateurs existent
     const users = await db.user.findMany();
@@ -86,34 +86,9 @@ try {
             }
         });
         console.log("✅ SUCCÈS PRISMA :", result);
-    } else {
-        console.log("⚠️ Aucun utilisateur trouvé, créons-en un d'abord");
-        
-        // Crée un utilisateur d'abord
-        const newUser = await db.user.create({
-            data: {
-                email: "test@example.com",
-                firstName: "Test",
-                lastName: "User",
-                password: "hashedpassword123"
-            }
-        });
-        console.log("✅ Utilisateur créé:", newUser);
-        
-        // Ensuite crée la commande
-        const result = await db.order.create({
-            data: {
-                userId: newUser.id,
-                stripeSessionId: "test_" + Date.now(),
-                totalAmount: 20,
-                status: "pending"
-            }
-        });
-        console.log("✅ Commande créée:", result);
-    }
-} catch (error: any) {
+    }} catch (error: any) {
     console.error("❌ ERREUR PRISMA DÉTAILLÉE :");
     console.error("Message:", error.message);
     console.error("Code erreur:", error.code);
     console.error("Meta:", error.meta);
-}
+}*/
