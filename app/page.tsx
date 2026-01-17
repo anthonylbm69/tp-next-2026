@@ -46,7 +46,6 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 font-sans scroll-smooth">
-      {/* Navigation (Header) */}
       <nav className="flex items-center justify-between px-8 py-6 border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -63,7 +62,7 @@ export default async function Home() {
               <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                 Bonjour, <span className="text-blue-600 dark:text-blue-400">{user.firstName} {user.lastName}</span>
               </span>
-              <Link href="/api/logout" className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors">Déconnexion</Link>
+              <Link href="/api/auth/logout" className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors">Déconnexion</Link>
             </div>
           ) : (
             <>
@@ -75,10 +74,7 @@ export default async function Home() {
       </nav>
 
       <main className="flex-1">
-        {/* Hero Section */}
-        {/* Hero Section */}
         <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-89px)] px-6 text-center overflow-hidden">
-          {/* L'ajout de min-h-[calc(100vh-89px)] assure que la section prend toute la hauteur restante sous le menu */}
 
           <h1 className="text-6xl font-black tracking-tight text-black dark:text-white sm:text-7xl lg:text-8xl max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
             Synchronisez vos données
@@ -98,7 +94,6 @@ export default async function Home() {
             </Link>
           </div>
 
-          {/* Optionnel : Un petit indicateur de scroll en bas pour inviter à descendre */}
           <div className="absolute bottom-10 animate-bounce">
             <svg className="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -106,7 +101,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Pricing Section - RÉAPPARAÎT ICI */}
         <section id="pricing" className="relative isolate py-24 px-6 bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-950">
           <div className="mx-auto max-w-4xl text-center mb-16">
             <h2 className="text-base font-semibold text-blue-600 dark:text-blue-400 mb-4">TARIFS</h2>

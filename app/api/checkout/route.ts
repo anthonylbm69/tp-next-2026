@@ -58,9 +58,8 @@ export async function POST(req: Request) {
 
         const order = await db.order.create({
             data: {
-                userId: parseInt(userId),
                 stripeSessionId: session.id,
-                stripeInvoiceId: session.invoice as string | null,
+                userId: parseInt(userId),
                 invoiceNumber: session.invoice as string | null,
                 totalAmount: (session.amount_total || 0) / 100,
                 productId: productId,
