@@ -10,7 +10,6 @@ export async function POST(request: Request) {
 
     console.log("🔐 Login attempt for:", email);
 
-    // Validation
     if (!email || !password) {
       return NextResponse.json(
         { error: true, message: "Email et mot de passe requis" },
@@ -18,32 +17,27 @@ export async function POST(request: Request) {
       );
     }
 
-        // 1. Trouver l'utilisateur par email
     const user = await prisma.user.findUnique({
-            where: { email: email },
+      where: { email: email },
     });
 
     if (!user) {
-            return Response.json(
-                { error: true, message: "Identifiants invalides" },
+      return NextResponse.json( // ✅ Change Response.json en NextResponse.json
+        { error: true, message: "Email ou mot de passe incorrect" }, // ✅ Même message pour la sécurité
         { status: 401 }
       );
     }
 
-        // 2. Vérifier le mot de passe
-        // ArgonVerify(hash_en_base, mot_de_passe_saisi)
     const isPasswordValid = await ArgonVerify(user.password, password);
     console.log("🔑 Password valid:", isPasswordValid);
     
-
     if (!isPasswordValid) {
       return NextResponse.json(
-        { error: true, message: "Identifiants incorrects" },
+        { error: true, message: "Email ou mot de passe incorrect" }, // ✅ Même message
         { status: 401 }
       );
     }
 
-    // JWT
     const token = createToken({
       userId: user.id,
       email: user.email,
@@ -51,7 +45,6 @@ export async function POST(request: Request) {
 
     console.log("🎫 Token created:", token.substring(0, 20) + "...");
 
-    // Cookie HTTP-only
     await setAuthCookie(token);
     console.log("🍪 Cookie set successfully");
 

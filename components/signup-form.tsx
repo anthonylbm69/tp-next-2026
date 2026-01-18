@@ -68,8 +68,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Create an account</CardTitle>
-        <CardDescription>Enter your information below</CardDescription>
+        <CardTitle>Créer un compte</CardTitle>
+        <CardDescription>Entrez vos informations ci-dessous</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={onSubmit}>
@@ -79,32 +79,32 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             )}
 
             <Field>
-              <FieldLabel htmlFor="lastName">Last Name</FieldLabel>
-              <Input id="lastName" name="lastName" type="text" placeholder="Doe" required />
+              <FieldLabel htmlFor="lastName">Nom</FieldLabel>
+              <Input id="lastName" name="lastName" type="text" placeholder="Dupont" required />
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="firstName">First Name</FieldLabel>
-              <Input id="firstName" name="firstName" type="text" placeholder="John" required />
+              <FieldLabel htmlFor="firstName">Prénom</FieldLabel>
+              <Input id="firstName" name="firstName" type="text" placeholder="Jean" required />
             </Field>
 
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" name="email" type="email" placeholder="m@example.com" required />
+              <Input id="email" name="email" type="email" placeholder="exemple@email.com" required />
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">Mot de passe</FieldLabel>
               <Input id="password" name="password" type="password" required />
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="confirmPassword">Confirm Password</FieldLabel>
+              <FieldLabel htmlFor="confirmPassword">Confirmer le mot de passe</FieldLabel>
               <Input id="confirmPassword" name="confirmPassword" type="password" required />
             </Field>
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Create Account"}
+              {loading ? "Création du compte..." : "Créer un compte"}
             </Button>
           </FieldGroup>
         </form>

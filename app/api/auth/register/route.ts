@@ -8,7 +8,6 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, password, confirmPassword, firstName, lastName } = body;
 
-    // Validation
     if (!email || !password || !confirmPassword || !firstName || !lastName) {
       return NextResponse.json(
         { error: true, message: "Tous les champs sont requis" },
@@ -30,7 +29,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Vérifier si l'utilisateur existe déjà
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -41,7 +39,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    
+
     const hashedPassword = await ArgonHash(password);
 
     if (!hashedPassword || hashedPassword === "false") {
@@ -51,7 +49,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Création utilisateur
     const user = await prisma.user.create({
       data: {
         email,
@@ -61,13 +58,11 @@ export async function POST(request: Request) {
       },
     });
 
-    // JWT
     const token = createToken({
       userId: user.id,
       email: user.email,
     });
 
-    // Cookie HTTP-only
     await setAuthCookie(token);
 
     return NextResponse.json({

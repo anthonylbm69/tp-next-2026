@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id             Int             @id @default(autoincrement())
-  email          String          @unique
-  firstName      String
-  lastName       String
-  password       String
-  orders         Order[]
-  paymentMethods PaymentMethod[]
+  id                  Int                  @id @default(autoincrement())
+  email               String               @unique
+  firstName           String
+  lastName            String
+  password            String
+  orders              Order[]
+  paymentMethods      PaymentMethod[]
+  passwordResetTokens PasswordResetToken[]
 }
 
 model Product {
@@ -53,4 +54,17 @@ model PaymentMethod {
   expiryYear            Int
   isDefault             Boolean  @default(false)
   createdAt             DateTime @default(now())
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  used      Boolean  @default(false)
+
+  @@index([token])
+  @@index([userId])
 }

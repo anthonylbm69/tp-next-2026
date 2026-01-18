@@ -1,4 +1,4 @@
-"use client"  
+"use client"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -48,7 +48,7 @@ export function LoginForm({
       if (!response.ok || result.error) {
         setError(result.message || "Identifiants incorrects")
       } else {
-        router.push("/dashboard") 
+        router.push("/dashboard")
         router.refresh()
       }
     } catch (err) {
@@ -62,9 +62,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Connexion à votre compte</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Entrez votre email ci-dessous pour vous connecter
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -80,35 +80,35 @@ export function LoginForm({
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   id="email"
-                  name="email" 
+                  name="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="exemple@email.com"
                   required
                 />
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <FieldLabel htmlFor="password">Mot de passe</FieldLabel>
                   <a
-                    href="#"
+                    href="/forgot-password"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
+                    Mot de passe oublié ?
                   </a>
                 </div>
-                <Input 
-                  id="password" 
+                <Input
+                  id="password"
                   name="password"
-                  type="password" 
-                  required 
+                  type="password"
+                  required
                 />
               </Field>
               <Field>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Chargement..." : "Login"}
+                  {loading ? "Chargement..." : "Se connecter"}
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="/signup" className="underline">Sign up</a>
+                  Pas encore de compte ? <a href="/signup" className="underline">S&apos;inscrire</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
