@@ -17,6 +17,15 @@ export function NavMain() {
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
+
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild tooltip="Compte">
+              <Link href="/account">
+                <IconCirclePlusFilled />
+                <span>Compte</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
           
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Abonnement">

@@ -18,6 +18,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { IconEye, IconEyeOff } from "@tabler/icons-react"
 
 export function LoginForm({
   className,
@@ -25,6 +26,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
 
   async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
@@ -96,12 +98,26 @@ export function LoginForm({
                     Mot de passe oublié ?
                   </a>
                 </div>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    required
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                  >
+                    {showPassword ? (
+                      <IconEyeOff className="size-5" />
+                    ) : (
+                      <IconEye className="size-5" />
+                    )}
+                  </button>
+                </div>
               </Field>
               <Field>
                 <Button type="submit" className="w-full" disabled={loading}>

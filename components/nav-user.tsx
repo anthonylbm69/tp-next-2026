@@ -83,33 +83,14 @@ export function NavUser({
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
-                <Link href="/dashboard/account">
-                  <IconUserCircle />
-                  Account
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/billing">
-                  <IconCreditCard />
-                  Billing
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/notifications">
-                  <IconNotification />
-                  Notifications
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/api/auth/logout">
-                <IconLogout />
-                Log out
-              </Link>
+            <DropdownMenuItem
+              onClick={async () => {
+                await fetch('/api/auth/logout', { method: 'POST' })
+                window.location.href = '/'
+              }}
+            >
+              <IconLogout />
+              Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

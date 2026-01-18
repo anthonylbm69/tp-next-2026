@@ -17,13 +17,15 @@ import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { IconCheck, IconX } from "@tabler/icons-react"
+import { IconCheck, IconX, IconEye, IconEyeOff } from "@tabler/icons-react"
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const router = useRouter()
 
   const passwordRules = {
@@ -117,36 +119,50 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <Field>
               <FieldLabel htmlFor="password">Mot de passe</FieldLabel>
-              <Input 
-                id="password" 
-                name="password" 
-                type="password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required 
-              />
-              
+              <div className="relative">
+                <Input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                >
+                  {showPassword ? (
+                    <IconEyeOff className="size-5" />
+                  ) : (
+                    <IconEye className="size-5" />
+                  )}
+                </button>
+              </div>
+
               {password && (
                 <div className="mt-3 space-y-2">
-                  <ValidationRule 
-                    isValid={passwordRules.minLength} 
-                    text="Au moins 8 caractères" 
+                  <ValidationRule
+                    isValid={passwordRules.minLength}
+                    text="Au moins 8 caractères"
                   />
-                  <ValidationRule 
-                    isValid={passwordRules.hasUpperCase} 
-                    text="Au moins une majuscule (A-Z)" 
+                  <ValidationRule
+                    isValid={passwordRules.hasUpperCase}
+                    text="Au moins une majuscule (A-Z)"
                   />
-                  <ValidationRule 
-                    isValid={passwordRules.hasLowerCase} 
-                    text="Au moins une minuscule (a-z)" 
+                  <ValidationRule
+                    isValid={passwordRules.hasLowerCase}
+                    text="Au moins une minuscule (a-z)"
                   />
-                  <ValidationRule 
-                    isValid={passwordRules.hasNumber} 
-                    text="Au moins un chiffre (0-9)" 
+                  <ValidationRule
+                    isValid={passwordRules.hasNumber}
+                    text="Au moins un chiffre (0-9)"
                   />
-                  <ValidationRule 
-                    isValid={passwordRules.hasSpecialChar} 
-                    text="Au moins un caractère spécial (!@#$%...)" 
+                  <ValidationRule
+                    isValid={passwordRules.hasSpecialChar}
+                    text="Au moins un caractère spécial (!@#$%...)"
                   />
                 </div>
               )}
@@ -154,29 +170,42 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <Field>
               <FieldLabel htmlFor="confirmPassword">Confirmer le mot de passe</FieldLabel>
-              <Input 
-                id="confirmPassword" 
-                name="confirmPassword" 
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required 
-              />
-              
-              {/* ✅ Indicateur de correspondance */}
+              <div className="relative">
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                >
+                  {showConfirmPassword ? (
+                    <IconEyeOff className="size-5" />
+                  ) : (
+                    <IconEye className="size-5" />
+                  )}
+                </button>
+              </div>
+
               {confirmPassword && (
                 <div className="mt-2">
-                  <ValidationRule 
-                    isValid={passwordsMatch} 
-                    text="Les mots de passe correspondent" 
+                  <ValidationRule
+                    isValid={passwordsMatch}
+                    text="Les mots de passe correspondent"
                   />
                 </div>
               )}
             </Field>
 
-            <Button 
-              type="submit" 
-              className="w-full" 
+            <Button
+              type="submit"
+              className="w-full"
               disabled={loading || !isPasswordValid || !passwordsMatch}
             >
               {loading ? "Création du compte..." : "Créer un compte"}
@@ -190,11 +219,10 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
 function ValidationRule({ isValid, text }: { isValid: boolean; text: string }) {
   return (
-    <div className={`flex items-center gap-2 text-sm transition-colors ${
-      isValid 
-        ? 'text-green-600 dark:text-green-500' 
+    <div className={`flex items-center gap-2 text-sm transition-colors ${isValid
+        ? 'text-green-600 dark:text-green-500'
         : 'text-zinc-400 dark:text-zinc-600'
-    }`}>
+      }`}>
       {isValid ? (
         <IconCheck className="h-4 w-4 shrink-0" />
       ) : (

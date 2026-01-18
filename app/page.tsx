@@ -62,7 +62,14 @@ export default async function Home() {
               <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                 Bonjour, <span className="text-blue-600 dark:text-blue-400">{user.firstName} {user.lastName}</span>
               </span>
-              <Link href="/api/auth/logout" className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors">Déconnexion</Link>
+              <form action="/api/auth/logout" method="POST" className="inline">
+                <button
+                  type="submit"
+                  className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white py-2 px-4 transition-colors"
+                >
+                  Se déconnecter
+                </button>
+              </form>          
             </div>
           ) : (
             <>

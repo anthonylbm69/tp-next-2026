@@ -21,7 +21,6 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "ID utilisateur invalide" }, { status: 401 });
         }
 
-        // Récupère l'utilisateur
         const user = await db.user.findUnique({
             where: { id: userId },
         });
@@ -30,18 +29,18 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Utilisateur introuvable" }, { status: 404 });
         }
 
-        // Récupère le dernier abonnement actif
+        
         const currentOrder = await db.order.findFirst({
             where: {
                 userId: userId,
                 status: "paid",
-                productId: { not: 4 }, // Exclut déjà le Free
+                productId: { not: 4 },
             },
             orderBy: {
                 createdAt: "desc",
             },
             include: {
-                product: true, // ✅ Récupère les infos du produit
+                product: true,
             },
         });
 
@@ -51,13 +50,13 @@ export async function POST(req: Request) {
 
         const planName = currentOrder.product?.name || "Premium";
 
-        // Annule l'abonnement actuel
+        
         await db.order.update({
             where: { id: currentOrder.id },
             data: { status: "cancelled" },
         });
 
-        // Crée un Order Free (productId: 4)
+        
         await db.order.create({
             data: {
                 userId: userId,
@@ -70,7 +69,7 @@ export async function POST(req: Request) {
 
         console.log("✅ Abonnement annulé et repasse en Free pour l'utilisateur:", userId);
 
-        // 📧 Envoie l'email de confirmation d'annulation
+        
         try {
             console.log("📧 Tentative d'envoi email d'annulation à:", user.email);
 
@@ -160,7 +159,6 @@ export async function POST(req: Request) {
             console.error("Message:", emailError.message);
             console.error("Status:", emailError.statusCode);
             console.error("Details:", JSON.stringify(emailError, null, 2));
-            // On ne bloque pas l'annulation si l'email échoue
         }
 
         return NextResponse.json({ 

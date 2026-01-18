@@ -47,6 +47,17 @@ export default function CheckoutButton() {
     if (!price) {
         return (
             <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 p-6 dark:bg-zinc-950">
+                <div className="mb-6">
+                    <Link
+                        href="/dashboard"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors group"
+                    >
+                        <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
+                            <IconArrowLeft className="size-4" />
+                        </div>
+                        Retour au Dashboard
+                    </Link>
+                </div>
                 <h1 className="mb-4 text-4xl font-black tracking-tight text-zinc-900 dark:text-white text-center">
                     Sélectionnez votre forfait
                 </h1>

@@ -3,12 +3,12 @@ import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { 
-  IconCheck, 
-  IconCrown, 
-  IconAlertCircle, 
-  IconArrowUpRight, 
-  IconArrowLeft 
+import {
+  IconCheck,
+  IconCrown,
+  IconAlertCircle,
+  IconArrowUpRight,
+  IconArrowLeft
 } from "@tabler/icons-react";
 import CancelSubscriptionButton from "@/components/CancelSubscriptionButton";
 
@@ -39,8 +39,8 @@ export default async function SubscriptionPage() {
   return (
     <div className="max-w-5xl mx-auto py-10 px-6">
       <div className="mb-6">
-        <Link 
-          href="/dashboard" 
+        <Link
+          href="/dashboard"
           className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors group"
         >
           <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
