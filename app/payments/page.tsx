@@ -2,9 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Suspense } from "react";
 import { IconCheck, IconArrowLeft, IconLock, IconCreditCard } from "@tabler/icons-react";
 
-export default function CheckoutButton() {
+function CheckoutContent() {
     const searchParams = useSearchParams();
     const price = searchParams.get("price");
 
@@ -159,6 +160,23 @@ export default function CheckoutButton() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function PaymentsPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+                    <p className="text-sm font-medium text-zinc-500 animate-pulse">
+                        Chargement de la page de paiement...
+                    </p>
+                </div>
+            </div>
+        }>
+            <CheckoutContent />
+        </Suspense>
     );
 }
 

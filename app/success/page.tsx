@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { IconDownload, IconCheck, IconArrowLeft, IconLoader2 } from "@tabler/icons-react";
 
-export default function SuccessPage() {
+function SuccessContent() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get("session_id");
 
@@ -91,5 +91,22 @@ export default function SuccessPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function SuccessPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950">
+                <div className="flex flex-col items-center gap-4">
+                    <IconLoader2 className="h-8 w-8 animate-spin text-blue-500" />
+                    <p className="text-sm font-medium text-zinc-500">
+                        Vérification du paiement...
+                    </p>
+                </div>
+            </div>
+        }>
+            <SuccessContent />
+        </Suspense>
     );
 }
