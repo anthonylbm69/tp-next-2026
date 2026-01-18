@@ -10,6 +10,7 @@ import {
   IconArrowUpRight, 
   IconArrowLeft 
 } from "@tabler/icons-react";
+import CancelSubscriptionButton from "@/components/CancelSubscriptionButton";
 
 export default async function SubscriptionPage() {
   const cookieStore = await cookies();
@@ -83,10 +84,8 @@ export default async function SubscriptionPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              {currentProduct && (
-                <button className="px-6 py-2.5 rounded-xl border border-red-200 text-red-600 font-semibold text-sm hover:bg-red-50 transition-colors">
-                  Annuler l'abonnement
-                </button>
+              {currentProduct && planId !== 4 && (
+                <CancelSubscriptionButton productName={currentProduct.name} />
               )}
               <Link href="/payments" className="px-6 py-2.5 rounded-xl bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white font-semibold text-sm hover:opacity-90 transition-opacity flex items-center gap-2">
                 {currentProduct ? "Changer de forfait" : "Prendre un abonnement"} <IconArrowUpRight className="size-4" />
