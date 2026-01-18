@@ -2,8 +2,6 @@
 
 **CloudSync** est une plateforme moderne de collaboration et de synchronisation de données en temps réel, conçue pour transformer la façon dont les équipes travaillent ensemble.
 
-![CloudSync Banner](/public/window.svg)
-
 ## 🌟 Fonctionnalités Clés
 
 ### 🔐 Authentification & Sécurité
@@ -23,10 +21,40 @@
 
 ### ⚡️ Expérience Utilisateur
 - **Interface Moderne** : UI soignée avec **Tailwind CSS 4** et **Shadcn UI**.
-- **Mode Sombre** : Support natif du thème clair/sombre.
 - **Synchronisation** : Architecture prête pour la synchronisation de données en temps réel.
 
-## 🛠 Stack Technique
+## Documentation API
+
+L'API de CloudSync est conçue pour être simple et performante. Voici les principaux endpoints disponibles :
+
+| Méthode | Endpoint | Description | Payload Requis |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Création de compte | `{ email, password, firstName, lastName }` |
+| `POST` | `/api/auth/login` | Connexion utilisateur | `{ email, password }` |
+| `POST` | `/api/auth/logout` | Déconnexion | - |
+| `POST` | `/api/auth/forget-password` | Mot de passe oublié | `{ email }` |
+| `POST` | `/api/auth/reset-password` | Réinitialisation mot de passe | `{ password, passwordConfirmation }` |
+| `POST` | `/api/auth/update-email` | Changer de email | `{ token }` |
+| `POST` | `/api/auth/update-password` | Changer de mot de passe | `{ password, passwordConfirmation }` |
+| `POST` | `/api/auth/update-profile` | Changer de nom et prénom | `{ firstName, lastName }` |
+| `GET` | `/api/me` | Récupérer l'utilisateur courant | - (Cookie Auth requis) |
+| `POST` | `/api/checkout` | Créer une session de paiement | `{ amount }` |
+| `POST` | `/api/subscription/cancel` | Annuler l'abonnement | - |
+| `GET` | `/api/invoices` | Récupérer l'historique des factures | - (Cookie Auth requis) |
+| `POST` | `/api/invoices/:id/pdf` | Télécharger une facture PDF | - (Cookie Auth requis) |
+
+
+## 👥 Équipe & Organisation
+
+Ce projet a été réalisé en équipe avec une répartition claire des responsabilités, tout en favorisant l'entraide :
+
+- **Anthony** :  **Stripe** (Paiements & Abonnements), support technique global et touche-à-tout sur le projet.
+- **Kemyl** :  **Base de Données** (Prisma/PostgreSQL), logique métier et support polyvalent.
+- **Bryan** :  **Frontend**, design UI/UX et intégration des composants React.
+
+**Organisation** : Le développement a suivi un flux Git rigoureux avec l'utilisation de **branches multiples** pour chaque fonctionnalité, assurant un code propre et stable sur la branche principale.
+
+## �🛠 Stack Technique
 
 Ce projet utilise les dernières technologies du développement web moderne :
 
@@ -34,6 +62,8 @@ Ce projet utilise les dernières technologies du développement web moderne :
 - **Langage** : [TypeScript](https://www.typescriptlang.org/)
 - **Base de Données** : [Neon](https://neon.tech/) avec [Prisma ORM](https://www.prisma.io/)
 - **Styling** : [Tailwind CSS 4](https://tailwindcss.com/)
+- **Composants UI** : [Shadcn UI](https://ui.shadcn.com/)
+- **JWT** : [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - **Paiement** : [Stripe](https://stripe.com/)
 - **Email** : [Resend](https://resend.com/)
 - **Validation** : [Zod](https://zod.dev/)
