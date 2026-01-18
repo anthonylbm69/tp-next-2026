@@ -50,7 +50,7 @@ Ce projet a été réalisé en équipe avec une répartition claire des responsa
 
 - **Anthony** :  **Stripe** (Paiements & Abonnements), support technique global et touche-à-tout sur le projet.
 - **Kemyl** :  **Base de Données** (Prisma/PostgreSQL), logique métier et support polyvalent.
-- **Bryan** :  **Frontend**, design UI/UX et intégration des composants React.
+- **Brian** :  **Frontend**, design UI/UX et intégration des composants React.
 
 **Organisation** : Le développement a suivi un flux Git rigoureux avec l'utilisation de **branches multiples** pour chaque fonctionnalité, assurant un code propre et stable sur la branche principale.
 
@@ -75,7 +75,7 @@ Suivez ces étapes pour lancer le projet localement :
 1. **Cloner le dépôt**
 
 ```bash
-git clone https://github.com/votre-username/tp-next-2026.git
+git clone https://github.com/anthonylbm69/tp-next-2026.git
 cd tp-next-2026
 ```
 
