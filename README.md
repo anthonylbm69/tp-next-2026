@@ -67,6 +67,7 @@ Ce projet utilise les dernières technologies du développement web moderne :
 - **Paiement** : [Stripe](https://stripe.com/)
 - **Email** : [Resend](https://resend.com/)
 - **Validation** : [Zod](https://zod.dev/)
+- **Déploiement** : [Vercel](https://vercel.com/)
 
 ## 📦 Installation
 
