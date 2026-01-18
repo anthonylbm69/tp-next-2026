@@ -1,8 +1,9 @@
 "use client"
 
-import { TablerIcon } from "@tabler/icons-react"
+import { IconCreditCard, IconReceipt2, IconCirclePlusFilled, IconMail } from "@tabler/icons-react"
 import Link from "next/link"
 
+import { Button } from "@/components/ui/button"
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -11,29 +12,39 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-interface NavMainProps {
-  items: {
-    title: string
-    url: string
-    icon: TablerIcon
-  }[]
-}
-
-export function NavMain({ items }: NavMainProps) {
+export function NavMain() {
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild tooltip={item.title}>
-                <Link href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild tooltip="Compte">
+              <Link href="/account">
+                <IconCirclePlusFilled />
+                <span>Compte</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild tooltip="Abonnement">
+              <Link href="/subscriptions">
+                <IconCreditCard />
+                <span>Abonnement</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild tooltip="Factures">
+              <Link href="/invoices">
+                <IconReceipt2 />
+                <span>Factures</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
