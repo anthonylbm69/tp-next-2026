@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_URL || "https://tp-next-2026.vercel.app/";
 
 export async function POST(req: Request) {
     try {
